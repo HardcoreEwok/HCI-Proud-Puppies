@@ -5,5 +5,5 @@ Contributors:
 - Ashley Borgerding
 - Austin Echols The Best
 - Brennan Connolly
-- Sam Emswiler
+- Sam Emswiler BAM
 - Uday Kohli
