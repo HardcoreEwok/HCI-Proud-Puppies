@@ -1,0 +1,5 @@
+1) Enter your age: 22.0
+2) Have you adopted an animal before? No
+3) How likely would you be to use this application in seeking to adopt an animal? (1 being not at all, 10 being you would absolutely use it) 8/10
+4) Which of these animals would you like to see in this application? [Cats and Dogs, Hamsters and Mice, Rabbits]
+5) What feature would you like to see the most in this application? I think an image viewer for the animals would be great! There should be a variety of pictures for each animal you're looking at.
