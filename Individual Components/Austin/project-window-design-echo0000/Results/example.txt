@@ -1,0 +1,6 @@
+Upload Widget Animal Field: Dog
+Upload Widget Age Field: 5
+Upload Widget Color Field: Gold
+Upload Widget Sex Field: Female
+Upload Widget Adopt Field: No
+Upload Widget Fixed Field: Spay
