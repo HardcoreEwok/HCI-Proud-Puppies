@@ -1,0 +1,34 @@
+File Menu: Upload clicked
+Description: Uploads a new animal to the collection
+File Menu: Open clicked
+Description: Does nothing pertinent to the application
+File Menu: Save clicked
+Description: Does nothing pertinent to the application
+File Menu: Print clicked
+Description: Opens a system prompt to print the current collection item viewed
+Edit Menu: Zoom clicked
+Description: Scales the application to be larger or smaller
+Edit Menu: Cut clicked
+Description: Performs system Cut operation
+Edit Menu: Copy clicked
+Description: Performs the system copy operation
+Edit Menu: Paste clicked
+Description: Performs the system paste operation
+Help Menu: Report a Problem clicked
+Description: Opens a prompt to report a problem with the application
+Help Menu: Proud Partners clicked
+Description: Opens a link to Proud Partners website
+Help Menu: Contact Us clicked
+Description: Opens a prompt that displays contact information
+Account Menu: Log In/Out clicked
+Description: Opens login window/Logs user out
+Account Menu: Settings clicked
+Description: Opens the settings menu
+Adorables Menu: View clicked
+Description: Opens window holding your adorables list
+Adorables Menu: Add clicked
+Description: Adds the currently viewed collection item to the user's adorables list
+Adorables Menu: Reorder clicked
+Description: Sorts the adorables list
+Adorables Menu: Remove clicked
+Description: Removes the currently viewed collection item from your adorables llist
