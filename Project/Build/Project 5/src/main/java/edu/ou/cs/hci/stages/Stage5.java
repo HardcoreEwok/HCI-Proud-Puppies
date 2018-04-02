@@ -21,9 +21,13 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import edu.ou.cs.hci.resources.Resources;
 
 
 //******************************************************************************
@@ -58,7 +62,6 @@ public final class Stage4
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		String outputText = "";
 		JFrame	frame = new JFrame("Proud Puppies");
 		JPanel	logInUpload = new JPanel();
 		JPanel	filterSearch = new JPanel();
@@ -67,6 +70,7 @@ public final class Stage4
 		JPanel	smallPicCurrent = new HelloPanel("Current");
 		JPanel	smallPicNext = new HelloPanel("Next");
 		JPanel	content = new HelloPanel("Content...");
+		JPanel  menuBar = new JPanel();
 		
 		// Collection selection window
 		DefaultListModel<String> itemListModel = new DefaultListModel<String>();
@@ -89,6 +93,7 @@ public final class Stage4
 		JButton uploadBtn = new JButton("Upload");
 		JButton filterBtn = new JButton("Filter");
 		JButton searchBtn = new JButton("Search");
+		menuBar.setAlignmentX(Component.LEFT_ALIGNMENT);
 		logInOutBtn.setPreferredSize(new Dimension(100, 40));
 		uploadBtn.setPreferredSize(new Dimension(100, 40));
 		filterBtn.setPreferredSize(new Dimension(100, 40));
@@ -100,12 +105,24 @@ public final class Stage4
 		GridBagConstraints c = new GridBagConstraints();
 
 		//add the panels inside the frame
+		c.anchor = GridBagConstraints.FIRST_LINE_START;
 		c.fill = GridBagConstraints.BOTH;
 		c.weighty = 0;
-		c.weightx = 0.1;
+		c.weightx = 0.5;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridheight = 1;
+		c.gridwidth = 4;
+		frame.getContentPane().add(menuBar, c);
+		
+		c.fill = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.CENTER;
+		c.weighty = 0;
+		c.weightx = 0.1;
+		c.gridx = 0;
+		c.gridy = 1;
+		c.gridheight = 1;
+		c.gridwidth = 1;
 		logInUpload.add(logInOutBtn);
 		logInUpload.add(uploadBtn);
 		frame.getContentPane().add(logInUpload, c);
@@ -113,7 +130,7 @@ public final class Stage4
 		c.weighty = 0;
 		c.weightx = 0.05;
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		c.gridheight = 1;
 		filterSearch.add(searchBtn);
 		filterSearch.add(filterBtn);
@@ -122,7 +139,7 @@ public final class Stage4
 		c.weighty = 0.9;
 		c.weightx = 0.05;
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridheight = 10;
 		//Insets(top,left,bottom,right)
 		c.insets = new Insets(10,15,15,15);
@@ -132,7 +149,7 @@ public final class Stage4
 		c.weightx = 1.5;
 		c.gridx = 1;
 		c.gridy = 0;
-		c.gridheight = 6;
+		c.gridheight = 7;
 		c.gridwidth = 3;
 	    c.insets = new Insets(10,0,0,20);
 		frame.getContentPane().add(bigPicture, c);
@@ -140,7 +157,7 @@ public final class Stage4
 		c.weighty = 0.1;
 		c.weightx = 0.25;
 		c.gridx = 1;
-		c.gridy = 6;
+		c.gridy = 7;
 		c.gridheight = 2;
 		c.gridwidth = 1;
 	    c.insets = new Insets(0,50,3,3); 
@@ -149,7 +166,7 @@ public final class Stage4
 		c.weighty = 0.1;
 		c.weightx = 0.25;
 		c.gridx = 2;
-		c.gridy = 6;
+		c.gridy = 7;
 		c.gridheight = 2;
 		c.gridwidth = 1;
 	    c.insets = new Insets(3,60,3,60); 
@@ -158,7 +175,7 @@ public final class Stage4
 		c.weighty = 0.1;
 		c.weightx = 0.25;
 		c.gridx = 3;
-		c.gridy = 6;
+		c.gridy = 7;
 		c.gridheight = 2;
 		c.gridwidth = 1;
 	    c.insets = new Insets(3,3,3,70); 
@@ -167,11 +184,14 @@ public final class Stage4
 		c.weighty = 0.3;
 		c.weightx = 0.75;
 		c.gridx = 1;
-		c.gridy = 8;
+		c.gridy = 9;
 		c.gridwidth = 3;
 		c.gridheight = 4;
 	    c.insets = new Insets(0,0,20,20);
 		frame.getContentPane().add(content, c);
+		
+		createMenuBar(menuBar);
+		createToolBar(frame);
 		
 		filterBtn.addActionListener(new ActionListener()
 		{
@@ -231,34 +251,221 @@ public final class Stage4
 
 	    	}
 	    });
-//		frame.addWindowListener(new WindowAdapter() {
-//				public void windowClosing(WindowEvent e)
-//				{
-//					JFileChooser fc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-//					if(fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION )
-//					{
-//						File selectedFile = fc.getSelectedFile();
-//						System.out.print(selectedFile.getAbsolutePath());
-//						
-//						//TODO: Handle creating/updating the file retrieved above
-//						try
-//						{
-//							BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//						    String lineFromInput = in.readLine();
-//						    PrintWriter out = new PrintWriter(new FileWriter(selectedFile.getAbsolutePath()));
-//						    out.println(lineFromInput);
-//						    out.close();
-//						}
-//						catch(IOException e1) 
-//						{
-//					    System.out.println("Error during reading/writing");
-//						}
-//						System.exit(0);
-//					}
-//				}
-//			});
+	}
+	
+	public static void createMenuBar(JPanel panel)
+	{
+		JMenuBar  menuBar = new JMenuBar();
+		menuBar.setPreferredSize(new Dimension(987, 20));
+		JMenu 	  fileMenu = new JMenu("File");
+		JMenu 	  editMenu = new JMenu("Edit");
+		JMenu 	  helpMenu = new JMenu("Help");
+		JMenu 	  accountMenu = new JMenu("Account");
+		JMenuItem fileUpload = new JMenuItem("Upload");
+		JMenuItem fileDelete = new JMenuItem("Delete");
+		JMenuItem fileOpen = new JMenuItem("Open");
+		JMenuItem fileSave = new JMenuItem("Save");
+		JMenuItem filePrint = new JMenuItem("Print");
+		JMenuItem fileShare = new JMenuItem("Share");
+		JMenuItem fileQuit = new JMenuItem("Quit");
+		JMenuItem editZoom = new JMenuItem("Zoom");
+		JMenuItem editCut = new JMenuItem("Cut");
+		JMenuItem editCopy = new JMenuItem("Copy");
+		JMenuItem editPaste = new JMenuItem("Paste");
+		JMenu 	  adorablesSubMenu = new JMenu("Adorables");
+		JMenuItem adorablesView = new JMenuItem("View");
+		JMenuItem adorablesAdd = new JMenuItem("Add");
+		JMenuItem adorablesReorder = new JMenuItem("Reorder");
+		JMenuItem adorablesRemove = new JMenuItem("Remove");
+		JMenuItem helpReport = new JMenuItem("Report");
+		JMenuItem helpPartners = new JMenuItem("Proud Partners");
+		JMenuItem helpContact = new JMenuItem("Contact Us");
+		JMenuItem accountLogging = new JMenuItem("Log In/Out");
+		JMenuItem accountSettings = new JMenuItem("Settings");
+		
+		panel.add(menuBar);
+		menuBar.add(fileMenu);
+		menuBar.add(editMenu);
+		menuBar.add(helpMenu);
+		menuBar.add(Box.createHorizontalGlue());
+		menuBar.add(accountMenu);
+		
+		fileMenu.add(fileUpload);
+		fileMenu.add(fileDelete);
+		fileMenu.add(fileOpen);
+		fileMenu.add(fileSave);
+		fileMenu.add(filePrint);
+		fileMenu.add(fileShare);
+		fileMenu.addSeparator();
+		fileMenu.add(fileQuit);
+		editMenu.add(editZoom);
+		editMenu.addSeparator();
+		editMenu.add(editCut);
+		editMenu.add(editCopy);
+		editMenu.add(editPaste);
+		editMenu.addSeparator();
+		editMenu.add(adorablesSubMenu);
+		
+		adorablesSubMenu.add(adorablesView);
+		adorablesSubMenu.add(adorablesAdd);
+		adorablesSubMenu.add(adorablesReorder);
+		adorablesSubMenu.add(adorablesRemove);
+		
+		helpMenu.add(helpReport);
+		helpMenu.add(helpPartners);
+		helpMenu.add(helpContact);
+		
+		accountMenu.add(accountLogging);
+		accountMenu.add(accountSettings);
+		
+		fileUpload.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Upload' was selected. This selection would bring up a pop-up to prompt the "
+		        		+ "user to enter the necessary info to upload a new animal.");
+		      }});
+		
+		fileDelete.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Delete' was selected. This selection would bring up a pop-up to confirm if the "
+		        		+ "user wants to delete the current animal or inform them this animal can not be deleted because "
+		        		+ "they were not the uploader.");
+		      }});
+		
+		fileOpen.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Open' was selected. This feature was required but we didn't feel there was an equivalent for our "
+		        		+ "application. I would remove this for the final product.");
+		      }});
+		
+		fileSave.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Save' was selected. This feature was required but we didn't feel there was an equivalent for our "
+		        		+ "application. I would remove this for the final product.");
+		      }});
+		
+		filePrint.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Print' was selected. This selection would initiate a print dialog box to print the current application "
+		        		+ "frame in its entirety.");
+		      }});
+		
+		fileShare.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Share' was selected. This selection would bring up a pop-up to prompt the user "
+		        		+ "to enter an email address to send a link the applicaiton that would open on the current application frame.");
+		      }});
+		
+		fileShare.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		       //TODO: Implement 
+		      }});
+		
+		editZoom.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Zoom' was selected. This selection would zoom in on the window by 20%. To return to normal viewing size "
+		        		+ "the user would have to zoom to 80% larger then it would automatically circle back to 100% viewing");
+		      }});
+		
+		editCut.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Cut' was selected. I feel this selection is irrelevent since you can't actually edit a normal "
+		        		+ "viewing page in this app. I would remove this for the final product.");
+		      }});
+		
+		editCopy.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Copy' was selected. This selection would copy any currently highlighted text on the screen to "
+		        		+ "the users clipboard.");
+		      }});
+		
+		editPaste.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Paste' was selected. I feel this selection is irrelevent since you can't actually edit a normal "
+		        		+ "viewing page in this app. I would remove this for the final product.");
+		      }});
+		
+		adorablesView.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'View' was selected from the Adorables sub menu. This selection would load the users "
+		        		+ "adorables list into the side view panel for selection.");
+		      }});
+		
+		adorablesAdd.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Add' was selected from the Adorables sub menu. This selection would add the current animal currently "
+		        		+ "in the main view panel to the users adorables list.");
+		      }});
+		
+		adorablesReorder.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Reorder' was selected from the Adorables sub menu. This selection would open a pop-up menu that "
+		        		+ "would allow the user to reorder the animals currently saved in their adorables list.");
+		      }});
+		
+		adorablesRemove.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Remove' was selected from the Adorables sub menu. This selection would open a pop-up menu that "
+		        		+ "would allow the user to delete single or multiple animals currently saved in their adorables list.");
+		      }});
+		
+		helpReport.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Report' was selected. This selection would open a pop-up menu that "
+		        		+ "would allow the users to report bugs or major issues in the program. These would typically get higher priority than "
+		        		+ "suggestions from 'Contact' submissions.");
+		      }});
+		
+		helpPartners.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Proud Partners' was selected. This selection would open a pop-up menu that would link to a "
+		        		+ "page listing partners of the applicaiton such a animal rescues and adoption agencies.");
+		      }});
+		
+		helpContact.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Contact' was selected. This selection would open a pop-up menu that would provide a text area "
+		        		+ "where application users could leave feedback, questions, and suggestions. There would also be a text field "
+		        		+ "where the user could choose to leave an email address for a response if applicable");
+		      }});
+		
+		accountLogging.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Log In/Out' was selected. This selection would open a pop-up menu that prompt a user to log in with "
+		        		+ "user name and password or (if already logged in) display a confirmation of logging out.");
+		      }});
+		
+		accountSettings.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent ev) {
+		        System.out.println("'Settings' was selected. This selection would open a pop-up menu that prompt a user to update any "
+		        		+ "previously set account settings such as display name, email, etc.");
+		      }});
 	}
 
+	public static void createToolBar(JFrame frame)
+	{
+		JToolBar tb = new JToolBar();
+		JButton upload = new JButton();
+		JButton delete = new JButton();
+		JButton addToAdorables = new JButton();
+		JButton filter = new JButton();
+		JButton search = new JButton();
+		
+		try {
+		    Image img = ImageIO.read(getClass().getResource("resources/water.bmp"));
+		    upload.setIcon(new ImageIcon(img));
+		  } catch (Exception ex) {
+		    System.out.println(ex);
+		  }
+		
+		ArrayList<String> scenarioTitles = Resources.getLines("scenarios/titles.txt");
+		
+		tb.add(upload);
+		tb.add(delete);
+		tb.add(addToAdorables);
+		tb.add(search);
+		tb.add(filter);
+	}
+	
 	public static void LoginPopUp()
 	{
 		//Create components for Filter Pop-up
@@ -446,7 +653,6 @@ public final class Stage4
 				});
 	}
 	
-	
 	public static void UploadPopUp()
 	{
 		//Create components for Filter Pop-up
@@ -506,7 +712,7 @@ public final class Stage4
 				         "Orange"
 				};
 				JComboBox<Object> colors = new JComboBox<Object>(colorList);
-				species.setSelectedIndex(0);
+				colors.setSelectedIndex(0);
 				
 				//Add and group components
 				nameBox.setPreferredSize(new Dimension(150,30));
