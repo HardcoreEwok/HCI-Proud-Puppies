@@ -22,6 +22,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+<<<<<<< Updated upstream:Individual Components/Ashley/project-menu-design-find5271/project-menu-design/Build/menuDesign/src/main/java/edu/ou/cs/hci/stages/Stage5.java
+=======
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+>>>>>>> Stashed changes:Project/Build/Project 5/src/main/java/edu/ou/cs/hci/stages/Stage5.java
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
