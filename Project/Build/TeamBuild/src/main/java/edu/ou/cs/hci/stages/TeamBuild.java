@@ -18,11 +18,9 @@ package edu.ou.cs.hci.stages;
 //import java.lang.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -65,11 +63,12 @@ public final class TeamBuild
 		JPanel	logInUpload = new JPanel();
 		JPanel	filterSearch = new JPanel();
 		JPanel	bigPicture = new HelloPanel("Display");
-		JPanel	smallPicPrevious = new HelloPanel("Prev.");
-		JPanel	smallPicCurrent = new HelloPanel("Current");
-		JPanel	smallPicNext = new HelloPanel("Next");
+		JPanel	previewOne = new HelloPanel("P1");
+		JPanel	previewTwo = new HelloPanel("P2");
+		JPanel	previewThree = new HelloPanel("P3");
+		JPanel  previewFour = new HelloPanel("P4");
 		JPanel	content = new HelloPanel("Content...");
-		JPanel  menuBar = new JPanel();
+		JPanel  toolbar = new JPanel();
 		
 		// Collection selection window
 		DefaultListModel<String> itemListModel = new DefaultListModel<String>();
@@ -87,12 +86,17 @@ public final class TeamBuild
 			}
 		});
 		
+		//Add borders to distinguish text zones
+		Border bevelBorder = BorderFactory.createEtchedBorder();
+		content.setBorder(bevelBorder);
+		itemList.setBorder(bevelBorder);
+		
 		//Creation of Widgets for Menu
 		JButton logInOutBtn = new JButton("Log In/Out");
 		JButton uploadBtn = new JButton("Upload");
 		JButton filterBtn = new JButton("Filter");
 		JButton searchBtn = new JButton("Search");
-		menuBar.setAlignmentX(Component.LEFT_ALIGNMENT);
+		toolbar.setAlignmentX(Component.LEFT_ALIGNMENT);
 		logInOutBtn.setPreferredSize(new Dimension(100, 40));
 		uploadBtn.setPreferredSize(new Dimension(100, 40));
 		filterBtn.setPreferredSize(new Dimension(100, 40));
@@ -105,77 +109,112 @@ public final class TeamBuild
 
 		//add the panels inside the frame		
 		c.fill = GridBagConstraints.BOTH;
-		c.weighty = 0;
-		c.weightx = 0.1;
+		c.weighty = 0.05;
+		c.weightx = 0.05;
 		c.gridx = 0;
-		c.gridy = 1;
-		c.gridheight = 1;
+		c.gridy = 0;
+		//Insets(top,left,bottom,right)
+		c.insets = new Insets(10,0,0,0);
 		logInUpload.add(logInOutBtn);
 		logInUpload.add(uploadBtn);
 		frame.getContentPane().add(logInUpload, c);
 		
-		c.weighty = 0;
+		c.weighty = 0.05;
 		c.weightx = 0.05;
 		c.gridx = 0;
-		c.gridy = 2;
-		c.gridheight = 1;
+		c.gridy = 1;
+		//Insets(top,left,bottom,right)
 		filterSearch.add(searchBtn);
 		filterSearch.add(filterBtn);
 		frame.getContentPane().add(filterSearch, c);
 		
-		c.weighty = 0.9;
+		c.weighty = 11;
 		c.weightx = 0.05;
 		c.gridx = 0;
-		c.gridy = 3;
-		c.gridheight = 10;
+		c.gridy = 2;
+		c.gridheight = 11;
 		//Insets(top,left,bottom,right)
-		c.insets = new Insets(10,15,15,15);
+		c.insets = new Insets(10,15,20,15);
 		frame.getContentPane().add(itemList, c);
 
 		c.weighty = 0.6;
 		c.weightx = 1.5;
 		c.gridx = 1;
-		c.gridy = 1;
-		c.gridheight = 6;
-		c.gridwidth = 3;
-	    c.insets = new Insets(10,0,0,20);
+		c.gridy = 0;
+		c.gridheight = 8;
+		c.gridwidth = 2;
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(10,0,0,10);
 		frame.getContentPane().add(bigPicture, c);
 		
-		c.weighty = 0.1;
+		c.weighty = 0.05;
 		c.weightx = 0.25;
-		c.gridx = 1;
-		c.gridy = 7;
+		c.gridx = 4;
+		c.gridy = 0;
 		c.gridheight = 2;
 		c.gridwidth = 1;
-	    c.insets = new Insets(0,50,3,3); 
-		frame.getContentPane().add(smallPicPrevious, c);
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(10,0,15,20);
+		frame.getContentPane().add(previewOne, c);
 
-		c.weighty = 0.1;
+		c.weighty = 0.4;
 		c.weightx = 0.25;
-		c.gridx = 2;
-		c.gridy = 7;
+		c.gridx = 4;
+		c.gridy = 2;
 		c.gridheight = 2;
 		c.gridwidth = 1;
-	    c.insets = new Insets(3,60,3,60); 
-		frame.getContentPane().add(smallPicCurrent, c);
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(0,0,15,20);
+		frame.getContentPane().add(previewTwo, c);
 
-		c.weighty = 0.1;
+		c.weighty = 0.4;
 		c.weightx = 0.25;
-		c.gridx = 3;
-		c.gridy = 7;
-		c.gridheight = 2;
+		c.gridx = 4;
+		c.gridy = 5;
+		c.gridheight = 1;
 		c.gridwidth = 1;
-	    c.insets = new Insets(3,3,3,70); 
-		frame.getContentPane().add(smallPicNext, c);
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(0,0,15,20);
+		frame.getContentPane().add(previewThree, c);
 		
-		c.weighty = 0.3;
+		c.weighty = 0.4;
+		c.weightx = 0.25;
+		c.gridx = 4;
+		c.gridy = 6;
+		c.gridheight = 1;
+		c.gridwidth = 1;
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(0,0,0,20);
+		frame.getContentPane().add(previewFour, c);
+		
+		c.weighty = 0.6;
 		c.weightx = 0.75;
 		c.gridx = 1;
-		c.gridy = 9;
-		c.gridwidth = 3;
+		c.gridy = 8;
+		c.gridwidth = 4;
 		c.gridheight = 4;
-	    c.insets = new Insets(0,0,20,20);
+		//Insets(top,left,bottom,right)
+	    c.insets = new Insets(10,0,20,20);
 		frame.getContentPane().add(content, c);
+		
+		Color porcelain = Color.decode("#F3F6F6");
+		Color havelockBlue = Color.decode("#6090D9");
+		Color cello = Color.decode("#253A5E");
+		Color viking = Color.decode("#76b0db");
+		frame.getContentPane().setBackground(havelockBlue);
+		logInUpload.setBackground(havelockBlue);
+		filterSearch.setBackground(havelockBlue);
+		logInOutBtn.setBackground(cello);
+		logInOutBtn.setForeground(porcelain);
+		uploadBtn.setBackground(cello);
+		uploadBtn.setForeground(porcelain);
+		filterBtn.setBackground(cello);
+		filterBtn.setForeground(porcelain);
+		searchBtn.setBackground(cello);
+		searchBtn.setForeground(porcelain);
+		itemList.setBackground(porcelain);
+		itemList.setForeground(cello);
+		itemList.setSelectionBackground(viking);
 		
 		createMenuBar(frame);
 		
@@ -213,30 +252,6 @@ public final class TeamBuild
 		frame.setResizable(false);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	    
-	    frame.addWindowListener(new WindowAdapter() {
-	    	public void windowClosing(WindowEvent e) 
-	    	{
-
-	    		JFileChooser saveChooser = new JFileChooser();
-	    		saveChooser.setCurrentDirectory(new File("./../../../../../../Results"));
-	    		int retrival = saveChooser.showSaveDialog(null);
-
-
-
-	    		if (retrival == JFileChooser.APPROVE_OPTION) 
-	    		{
-	    			try(FileWriter fw = new FileWriter(saveChooser.getSelectedFile()+".txt")) 
-	    			{
-	    				//Put code here to write console to file
-	    			}
-	    			catch (Exception ex) 
-	    			{
-	    				ex.printStackTrace();
-	    			}
-	    		}
-
-	    	}
-	    });
 	}
 	
 	public static void createMenuBar(JFrame frame)
@@ -303,6 +318,16 @@ public final class TeamBuild
 		
 		accountMenu.add(accountLogging);
 		accountMenu.add(accountSettings);
+		
+	    Color porcelain = Color.decode("#F3F6F6");
+		Color cello = Color.decode("#253A5E");
+		menuBar.setBackground(cello);
+		menuBar.setForeground(porcelain);
+		fileMenu.setForeground(porcelain);
+		fileMenu.setBackground(cello);
+		editMenu.setForeground(porcelain);
+		helpMenu.setForeground(porcelain);
+		accountMenu.setForeground(porcelain);
 		
 		frame.setJMenuBar(menuBar);
 		
@@ -431,25 +456,7 @@ public final class TeamBuild
 		fileQuit.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent ev) {
 		        System.out.println("'Quit' was selected.");
-		        fileUpload.doClick();
-				fileDelete.doClick();
-				fileOpen.doClick();
-				fileSave.doClick();
-				filePrint.doClick();
-				fileShare.doClick();
-				editZoom.doClick();
-				editCut.doClick();
-				editCopy.doClick();
-				editPaste.doClick();
-				adorablesView.doClick();
-				adorablesAdd.doClick();
-				adorablesReorder.doClick();
-				adorablesRemove.doClick();
-				helpReport.doClick();
-				helpPartners.doClick();
-				helpContact.doClick();
-				accountLogging.doClick();
-				accountSettings.doClick();
+		        frame.dispose();
 		      }});
 	}
 	
@@ -493,6 +500,15 @@ public final class TeamBuild
 		tb.add(addToAdorables);
 		tb.add(search);
 	    tb.add(filter);
+	    
+		Color cello = Color.decode("#253A5E");
+	    upload.setBackground(cello);
+	    delete.setBackground(cello);
+	    addToAdorables.setBackground(cello);
+	    filter.setBackground(cello);
+	    search.setBackground(cello);
+	    tb.setBackground(cello);
+
 		menuBar.add(tb);
 		
 		upload.addActionListener(new ActionListener() {
@@ -857,7 +873,7 @@ public final class TeamBuild
 			if (FILL_COLOR != null)
 			{
 				g.setColor(FILL_COLOR);
-				g.fillRect(10, 10, 1000, 1000);
+				g.fillRect(0, 0, 1000, 1000);
 			}
 
 			if (EDGE_COLOR != null)
