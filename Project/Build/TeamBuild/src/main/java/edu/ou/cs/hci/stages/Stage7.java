@@ -19,10 +19,14 @@ package edu.ou.cs.hci.stages;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
+import java.util.Enumeration;
+import java.util.Map.Entry;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.FontUIResource;
 
 import edu.ou.cs.hci.resources.Resources;
 
@@ -35,23 +39,17 @@ import edu.ou.cs.hci.resources.Resources;
  * @author  Chris Weaver
  * @version %I%, %G%
  */
-public final class TeamBuild
+public final class Stage7
 {
-	//**********************************************************************
-	// Public Class Members
-	//**********************************************************************
-
 	private static final Font	FONT =
 		new Font(Font.SERIF, Font.ITALIC, 20);
 	private static final Color	FILL_COLOR = Color.WHITE;
 	private static final Color	EDGE_COLOR = Color.BLACK;
 	
-
-	//**********************************************************************
-	// Private Members
-	//**********************************************************************
-
-	
+	private static final Color porcelain = Color.decode("#F3F6F6");
+	private static final Color havelockBlue = Color.decode("#6090D9");
+	private static final Color cello = Color.decode("#253A5E");
+	private static final Font font = new Font("Tahoma", Font.PLAIN|Font.BOLD, 11);
 
 	//**********************************************************************
 	// Main
@@ -59,15 +57,18 @@ public final class TeamBuild
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
+		
+		setUIFont(font);
+
 		JFrame	frame = new JFrame("Proud Puppies");
 		JPanel	logInUpload = new JPanel();
 		JPanel	filterSearch = new JPanel();
-		JPanel	bigPicture = new HelloPanel("Display");
-		JPanel	previewOne = new HelloPanel("P1");
-		JPanel	previewTwo = new HelloPanel("P2");
-		JPanel	previewThree = new HelloPanel("P3");
-		JPanel  previewFour = new HelloPanel("P4");
-		JPanel	content = new HelloPanel("Content...");
+		JPanel	bigPicture = new JPanel();
+		JPanel	previewOne = new JPanel();
+		JPanel	previewTwo = new JPanel();
+		JPanel	previewThree = new JPanel();
+		JPanel  previewFour = new JPanel();
+		JPanel	content = new JPanel();
 		JPanel  toolbar = new JPanel();
 		
 		// Collection selection window
@@ -197,10 +198,6 @@ public final class TeamBuild
 	    c.insets = new Insets(10,0,20,20);
 		frame.getContentPane().add(content, c);
 		
-		Color porcelain = Color.decode("#F3F6F6");
-		Color havelockBlue = Color.decode("#6090D9");
-		Color cello = Color.decode("#253A5E");
-		Color viking = Color.decode("#76b0db");
 		frame.getContentPane().setBackground(havelockBlue);
 		logInUpload.setBackground(havelockBlue);
 		filterSearch.setBackground(havelockBlue);
@@ -214,7 +211,8 @@ public final class TeamBuild
 		searchBtn.setForeground(porcelain);
 		itemList.setBackground(porcelain);
 		itemList.setForeground(cello);
-		itemList.setSelectionBackground(viking);
+		itemList.setSelectionBackground(cello);
+		itemList.setSelectionForeground(porcelain);
 		
 		createMenuBar(frame);
 		
@@ -254,35 +252,122 @@ public final class TeamBuild
 	    
 	}
 	
+	//Sets fonts globally
+	public static void setUIFont(Font f){
+		Enumeration keys = UIManager.getLookAndFeelDefaults().keys();
+		while(keys.hasMoreElements()){
+			Object key = keys.nextElement();
+			Object value = UIManager.get(key);
+			if(value instanceof FontUIResource)
+				UIManager.put(key,f);
+		}
+	}
+	
 	public static void createMenuBar(JFrame frame)
 	{
 		JMenuBar  menuBar = new JMenuBar();
+		menuBar.setOpaque(true);
+		
+		menuBar.setBackground(cello);
+		menuBar.setForeground(porcelain);
 		menuBar.setPreferredSize(new Dimension(987, 40));
+		
 		JMenu 	  fileMenu = new JMenu("File");
+		fileMenu.setForeground(porcelain);
+		
 		JMenu 	  editMenu = new JMenu("Edit");
+		editMenu.setForeground(porcelain);
+		
 		JMenu 	  helpMenu = new JMenu("Help");
+		helpMenu.setForeground(porcelain);
+		
 		JMenu 	  accountMenu = new JMenu("Account");
+		accountMenu.setForeground(porcelain);
+		
 		JMenuItem fileUpload = new JMenuItem("Upload");
+		fileUpload.setBackground(cello);
+		fileUpload.setForeground(porcelain);
+		
 		JMenuItem fileDelete = new JMenuItem("Delete");
+		fileDelete.setBackground(cello);
+		fileDelete.setForeground(porcelain);
+		
 		JMenuItem fileOpen = new JMenuItem("Open");
+		fileOpen.setBackground(cello);
+		fileOpen.setForeground(porcelain);
+		
 		JMenuItem fileSave = new JMenuItem("Save");
+		fileSave.setBackground(cello);
+		fileSave.setForeground(porcelain);
+		
 		JMenuItem filePrint = new JMenuItem("Print");
+		filePrint.setBackground(cello);
+		filePrint.setForeground(porcelain);
+		
 		JMenuItem fileShare = new JMenuItem("Share");
+		fileShare.setBackground(cello);
+		fileShare.setForeground(porcelain);
+		
 		JMenuItem fileQuit = new JMenuItem("Quit");
+		fileQuit.setBackground(cello);
+		fileQuit.setForeground(porcelain);
+		
 		JMenuItem editZoom = new JMenuItem("Zoom");
+		editZoom.setBackground(cello);
+		editZoom.setForeground(porcelain);
+		
 		JMenuItem editCut = new JMenuItem("Cut");
+		editCut.setBackground(cello);
+		editCut.setForeground(porcelain);
+		
 		JMenuItem editCopy = new JMenuItem("Copy");
+		editCopy.setBackground(cello);
+		editCopy.setForeground(porcelain);
+		
 		JMenuItem editPaste = new JMenuItem("Paste");
-		JMenu 	  adorablesSubMenu = new JMenu("Adorables");
+		editPaste.setBackground(cello);
+		editPaste.setForeground(porcelain);
+		
+		JMenuItem 	  adorablesSubMenu = new JMenu("Adorables");
+		adorablesSubMenu.setBackground(cello);
+		adorablesSubMenu.setForeground(porcelain);
+		adorablesSubMenu.setOpaque(true);
+		
 		JMenuItem adorablesView = new JMenuItem("View");
+		adorablesView.setBackground(cello);
+		adorablesView.setForeground(porcelain);
+		
 		JMenuItem adorablesAdd = new JMenuItem("Add");
+		adorablesAdd.setBackground(cello);
+		adorablesAdd.setForeground(porcelain);
+		
 		JMenuItem adorablesReorder = new JMenuItem("Reorder");
+		adorablesReorder.setBackground(cello);
+		adorablesReorder.setForeground(porcelain);
+		
 		JMenuItem adorablesRemove = new JMenuItem("Remove");
+		adorablesRemove.setBackground(cello);
+		adorablesRemove.setForeground(porcelain);
+		
 		JMenuItem helpReport = new JMenuItem("Report");
+		helpReport.setBackground(cello);
+		helpReport.setForeground(porcelain);
+		
 		JMenuItem helpPartners = new JMenuItem("Proud Partners");
+		helpPartners.setBackground(cello);
+		helpPartners.setForeground(porcelain);
+		
 		JMenuItem helpContact = new JMenuItem("Contact Us");
+		helpContact.setBackground(cello);
+		helpContact.setForeground(porcelain);
+		
 		JMenuItem accountLogging = new JMenuItem("Log In/Out");
+		accountLogging.setBackground(cello);
+		accountLogging.setForeground(porcelain);
+		
 		JMenuItem accountSettings = new JMenuItem("Settings");
+		accountSettings.setBackground(cello);
+		accountSettings.setForeground(porcelain);
 		
 		menuBar.add(fileMenu);
 		menuBar.add(editMenu);
@@ -318,16 +403,6 @@ public final class TeamBuild
 		
 		accountMenu.add(accountLogging);
 		accountMenu.add(accountSettings);
-		
-	    Color porcelain = Color.decode("#F3F6F6");
-		Color cello = Color.decode("#253A5E");
-		menuBar.setBackground(cello);
-		menuBar.setForeground(porcelain);
-		fileMenu.setForeground(porcelain);
-		fileMenu.setBackground(cello);
-		editMenu.setForeground(porcelain);
-		helpMenu.setForeground(porcelain);
-		accountMenu.setForeground(porcelain);
 		
 		frame.setJMenuBar(menuBar);
 		
@@ -553,6 +628,17 @@ public final class TeamBuild
 				JTextField passwordBox = new JTextField();
 				JButton submitBtn = new JButton("Submit");
 				
+				LoginPopUp.getContentPane().setBackground(havelockBlue);
+				username.setBackground(havelockBlue);
+				password.setBackground(havelockBlue);
+				submitPanel.setBackground(havelockBlue);
+				submitBtn.setBackground(cello);
+				submitBtn.setForeground(porcelain);
+				usernameBox.setBackground(porcelain);
+				passwordBox.setBackground(porcelain);
+				usernameLabel.setForeground(cello);
+				passwordLabel.setForeground(cello);
+				
 				//Add and group components
 				LoginPopUp.setSize(300, 700); //width, height 
 				LoginPopUp.setLocationRelativeTo(null);
@@ -612,7 +698,14 @@ public final class TeamBuild
 				submitPanel.add(submitBtn);
 				searchPopUp.setResizable(true);
 				searchPopUp.setVisible(true);
-
+				
+				search.setBackground(havelockBlue);
+				submitPanel.setBackground(havelockBlue);
+				searchLabel.setForeground(cello);
+				searchBox.setBackground(porcelain);
+				searchBox.setForeground(cello);
+				submitBtn.setBackground(cello);
+				submitBtn.setForeground(porcelain);
 				
 				searchPopUp.pack();
 				submitBtn.addActionListener(new ActionListener()
@@ -676,6 +769,32 @@ public final class TeamBuild
 				};
 				JComboBox<Object> colors = new JComboBox<Object>(colorList);
 				species.setSelectedIndex(0);
+				
+				
+				ageQ.setBackground(havelockBlue);
+				colorQ.setBackground(havelockBlue);
+				genderQ.setBackground(havelockBlue);
+				speciesQ.setBackground(havelockBlue);
+				submitPanel.setBackground(havelockBlue);
+				submitPanel.setForeground(cello);
+				ageLabel.setForeground(cello);
+				colorLabel.setForeground(cello);
+				genderLabel.setForeground(cello);
+				speciesLabel.setForeground(cello);
+				colors.setBackground(porcelain);
+				colors.setForeground(cello);
+				ageSpinner.setBackground(porcelain);
+				ageSpinner.setForeground(cello);
+				male.setBackground(havelockBlue);
+				male.setForeground(cello);
+				female.setBackground(havelockBlue);
+				female.setForeground(cello);
+				submitBtn.setBackground(cello);
+				submitBtn.setForeground(porcelain);
+				species.setBackground(porcelain);
+				species.setForeground(cello);
+				colors.setBackground(porcelain);
+				colors.setForeground(cello);
 				
 				//Add and group components
 				male.setActionCommand("Male");
@@ -785,6 +904,36 @@ public final class TeamBuild
 				JComboBox<Object> colors = new JComboBox<Object>(colorList);
 				colors.setSelectedIndex(0);
 				
+				
+				nameQ.setBackground(havelockBlue);
+				ageQ.setBackground(havelockBlue);
+				colorQ.setBackground(havelockBlue);
+				genderQ.setBackground(havelockBlue);
+				speciesQ.setBackground(havelockBlue);
+				description.setBackground(havelockBlue);
+				submitPanel.setBackground(havelockBlue);
+				nameLabel.setForeground(cello);
+				ageLabel.setForeground(cello);
+				genderLabel.setForeground(cello);
+				speciesLabel.setForeground(cello);
+				descriptionLabel.setForeground(cello);
+				nameBox.setBackground(porcelain);
+				nameBox.setForeground(cello);
+				descriptionBox.setBackground(porcelain);
+				descriptionBox.setForeground(cello);
+				ageSpinner.setBackground(porcelain);
+				ageSpinner.setForeground(cello);
+				male.setBackground(havelockBlue);
+				male.setForeground(cello);
+				female.setBackground(havelockBlue);
+				female.setForeground(cello);
+				submitBtn.setBackground(cello);
+				submitBtn.setForeground(porcelain);
+				species.setBackground(porcelain);
+				species.setForeground(cello);
+				colors.setForeground(cello);
+				colors.setBackground(porcelain);
+				
 				//Add and group components
 				nameBox.setPreferredSize(new Dimension(150,30));
 				male.setActionCommand("Male");
@@ -847,44 +996,44 @@ public final class TeamBuild
 	// Private Inner Classes
 	//**********************************************************************
 
-	private static final class HelloPanel extends JPanel
-	{
-		private final String	message;
-
-		public HelloPanel(String message)
-		{
-			this.message = ((message != null) ? message : "");
-		}
-
-		public HelloPanel()
-		{
-			this("");
-		}
-
-		public void	paintComponent(Graphics g)
-		{
-			FontMetrics	fm = g.getFontMetrics(FONT);
-			int			fw = fm.stringWidth(message);
-			int			fh = fm.getMaxAscent() + fm.getMaxDescent();
-			int			x = (getWidth() - fw) / 2;
-			int			y = (getHeight() - fh) / 2;
-			Rectangle		r = new Rectangle(x, y, fw + 4, fh + 1);
-
-			if (FILL_COLOR != null)
-			{
-				g.setColor(FILL_COLOR);
-				g.fillRect(0, 0, 1000, 1000);
-			}
-
-			if (EDGE_COLOR != null)
-			{
-				g.setColor(EDGE_COLOR);
-				//g.drawRect(10, 10, 1000, 1000);
-				g.setFont(FONT);
-				g.drawString(message, r.x + 2, r.y + fm.getMaxAscent());
-			}
-		}
-	}
+//	private static final class HelloPanel extends JPanel
+//	{
+//		private final String	message;
+//
+//		public HelloPanel(String message)
+//		{
+//			this.message = ((message != null) ? message : "");
+//		}
+//
+//		public HelloPanel()
+//		{
+//			this("");
+//		}
+//
+//		public void	paintComponent(Graphics g)
+//		{
+//			FontMetrics	fm = g.getFontMetrics(FONT);
+//			int			fw = fm.stringWidth(message);
+//			int			fh = fm.getMaxAscent() + fm.getMaxDescent();
+//			int			x = (getWidth() - fw) / 2;
+//			int			y = (getHeight() - fh) / 2;
+//			Rectangle		r = new Rectangle(x, y, fw + 4, fh + 1);
+//
+//			if (FILL_COLOR != null)
+//			{
+//				g.setColor(FILL_COLOR);
+//				g.fillRect(0, 0, 1000, 1000);
+//			}
+//
+//			if (EDGE_COLOR != null)
+//			{
+//				g.setColor(EDGE_COLOR);
+//				//g.drawRect(10, 10, 1000, 1000);
+//				g.setFont(new Font("Tahoma", Font.ITALIC, 24));
+//				g.drawString(message, r.x + 2, r.y + fm.getMaxAscent());
+//			}
+//		}
+//	}
 }
 
 //******************************************************************************
