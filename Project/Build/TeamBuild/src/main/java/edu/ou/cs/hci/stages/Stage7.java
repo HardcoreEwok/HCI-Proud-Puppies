@@ -59,6 +59,7 @@ public final class Stage7
 	{
 		
 		setUIFont(font);
+		//set up / read from csv
 
 		JFrame	frame = new JFrame("Proud Puppies");
 		JPanel	logInUpload = new JPanel();
@@ -203,12 +204,20 @@ public final class Stage7
 		filterSearch.setBackground(havelockBlue);
 		logInOutBtn.setBackground(cello);
 		logInOutBtn.setForeground(porcelain);
+		logInOutBtn.setOpaque(true);
+		logInOutBtn.setBorderPainted(false);
 		uploadBtn.setBackground(cello);
 		uploadBtn.setForeground(porcelain);
+		uploadBtn.setOpaque(true);
+		uploadBtn.setBorderPainted(false);
 		filterBtn.setBackground(cello);
 		filterBtn.setForeground(porcelain);
+		filterBtn.setOpaque(true);
+		filterBtn.setBorderPainted(false);
 		searchBtn.setBackground(cello);
 		searchBtn.setForeground(porcelain);
+		searchBtn.setOpaque(true);
+		searchBtn.setBorderPainted(false);
 		itemList.setBackground(porcelain);
 		itemList.setForeground(cello);
 		itemList.setSelectionBackground(cello);
@@ -250,6 +259,22 @@ public final class Stage7
 		frame.setResizable(false);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	    
+	}
+	
+	public static void readCSV(){
+		String[] COLUMNS =
+			{
+				"ID",
+				"Name",
+				"City",
+				"State",
+				"Latitude",
+				"Longitude",
+				"Capacity",
+			};
+		final JTable table =  new JTable();;		// Component for displaying the CSV
+		
+		
 	}
 	
 	//Sets fonts globally
@@ -328,7 +353,7 @@ public final class Stage7
 		editPaste.setBackground(cello);
 		editPaste.setForeground(porcelain);
 		
-		JMenuItem 	  adorablesSubMenu = new JMenu("Adorables");
+		JMenuItem adorablesSubMenu = new JMenu("Adorables");
 		adorablesSubMenu.setBackground(cello);
 		adorablesSubMenu.setForeground(porcelain);
 		adorablesSubMenu.setOpaque(true);
@@ -614,7 +639,7 @@ public final class Stage7
 	
 	public static void LoginPopUp()
 	{
-		//Create components for Filter Pop-up
+		//Create components for Login Pop-up
 				JFrame LoginPopUp = new JFrame("Login");
 				JPanel username = new JPanel();
 				JPanel password = new JPanel();
@@ -634,6 +659,8 @@ public final class Stage7
 				submitPanel.setBackground(havelockBlue);
 				submitBtn.setBackground(cello);
 				submitBtn.setForeground(porcelain);
+				submitBtn.setOpaque(true);
+				submitBtn.setBorderPainted(false);
 				usernameBox.setBackground(porcelain);
 				passwordBox.setBackground(porcelain);
 				usernameLabel.setForeground(cello);
@@ -676,7 +703,7 @@ public final class Stage7
 	
 	public static void SearchPopUp()
 	{
-		//Create components for Filter Pop-up
+		//Create components for Search Pop-up
 				JFrame searchPopUp = new JFrame("Search...");
 				JPanel search = new JPanel();
 				JPanel submitPanel = new JPanel();
@@ -706,6 +733,8 @@ public final class Stage7
 				searchBox.setForeground(cello);
 				submitBtn.setBackground(cello);
 				submitBtn.setForeground(porcelain);
+				submitBtn.setOpaque(true);
+				submitBtn.setBorderPainted(false);
 				
 				searchPopUp.pack();
 				submitBtn.addActionListener(new ActionListener()
@@ -791,6 +820,8 @@ public final class Stage7
 				female.setForeground(cello);
 				submitBtn.setBackground(cello);
 				submitBtn.setForeground(porcelain);
+				submitBtn.setOpaque(true);
+				submitBtn.setBorderPainted(false);
 				species.setBackground(porcelain);
 				species.setForeground(cello);
 				colors.setBackground(porcelain);
@@ -845,7 +876,7 @@ public final class Stage7
 	
 	public static void UploadPopUp()
 	{
-		//Create components for Filter Pop-up
+		//Create components for Upload Pop-up
 				JFrame uploadPopUp = new JFrame("Upload");
 				JPanel nameQ = new JPanel();
 				JPanel ageQ = new JPanel();
@@ -929,6 +960,8 @@ public final class Stage7
 				female.setForeground(cello);
 				submitBtn.setBackground(cello);
 				submitBtn.setForeground(porcelain);
+				submitBtn.setOpaque(true);
+				submitBtn.setBorderPainted(false);
 				species.setBackground(porcelain);
 				species.setForeground(cello);
 				colors.setForeground(cello);
