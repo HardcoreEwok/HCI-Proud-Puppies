@@ -1,0 +1,24 @@
+My program implements the design reformat discussed in the group assignment where we
+moved the preview windows to the right of the main window/display. In the mock up for 
+the relocation, the windows were fairly small, and I felt that they should be bigger 
+in order for them to be discernible previews. If a user wants to see other images,
+they should be able to distinguish the general structure/layout of the image just from
+a glance, and I felt like the sizes we had before were too small when implemented,
+so I opted for larger windows. The main display was made more square to resemble the 
+preview windows so users can visually link their functional similarities by their shape.
+
+For color, I implemented exactly what the group design stated. Making the buttons be the 
+darker Cello color with the Porcelain text really helps distinguish them from all the
+other widgets, while the universal background color of Havelock Blue acts as a good 
+neutral base against the other blue hues we used throughout. Each widget that had text
+in it was made to have a Porcelain background color, while the text was changed to
+use the darker Cello color. The Cello color for the text fits well as it's practically
+indistinguishable from black default color, but still holds to our theme of 4 colors.
+Lastly, we used Viking as the color for selection highlight, and it's enough of a shift
+from the main neutral Havelock Blue to not look off while still providing necessary 
+contrast.
+
+For text/labeling, we went with a universal shift to the Tahoma font. I had originally
+made the font 12 point, but this made some text on the buttons get cut off, so I
+switched it to 11 point. All text across the entire Swing project is changed, including
+widget, label, and menu text.  
