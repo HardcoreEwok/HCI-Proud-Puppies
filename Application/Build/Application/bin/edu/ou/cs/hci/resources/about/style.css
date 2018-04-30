@@ -1,0 +1,55 @@
+body {
+	color: #F3F6F6;
+    background-color: #6090D9;
+}
+
+h1 {
+    color: #253A5E;
+    font-family: tahoma;
+    font-size: 28px;
+    text-align: center;
+}
+
+h2 {
+    color: #253A5E;
+    font-family: tahoma;
+    font-size: 18px;
+    text-align: center;
+}
+
+h3 {
+    color: #253A5E;
+    font-family: tahoma;
+    font-size: 18px;
+    text-align: center;
+}
+
+h4 {
+	color: #253A5E;
+    font-family: tahoma;
+    font-size: 18px;
+    text-align: center;
+}
+
+h5 {
+	text-align: center;
+}
+
+p {
+	color: #F3F6F6;
+    font-family: tahoma;
+    font-size: 14px;
+    text-align: center;
+}
+
+ul {
+	color: #F3F6F6;
+    font-family: tahoma;
+    font-size: 14px;
+}
+
+.custom {
+    color: #ff0000;
+	font-style: italic;
+	font-weight: bold;
+}
